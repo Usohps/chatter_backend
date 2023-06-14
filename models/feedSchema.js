@@ -14,11 +14,20 @@ const feedSchema = new Schema({
         required: false
     },
     likes:{
-        types:Number,
+        types: Number,
+        // default:0
     },
-    comment:{
-        type: String,
-        
+    featured:{
+        type: Boolean,
+        default: false
+    },
+    createdAt:{
+        type: Date,
+        default: new Date()
+    },
+    updatedAt:{
+        type: Date,
+        default: new Date()
     }
 })
 module.exports =  mongoose.model("feeds",feedSchema)

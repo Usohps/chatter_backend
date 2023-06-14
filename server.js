@@ -1,5 +1,6 @@
 //require the following installed dependencies, express, mongoose,cors,dotenv
-
+// const expressValidator = require("express-validator")
+const bodyParser = require("body-parser")
 const express = require("express")
 const cors = require("cors")
 const mongoose  = require("mongoose")
@@ -16,6 +17,9 @@ app.use(express.json())
 app.use(cors())
 app.use("/api/user",userRoute)
 app.use("/api/feed",feedRoute)
+// app.use(expressValidator())
+app.use(bodyParser.json())
+
 
 const mongoDB = "mongodb://127.0.0.1:27017/ChatterDB"; 
 
