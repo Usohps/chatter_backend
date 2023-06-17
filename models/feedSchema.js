@@ -14,8 +14,8 @@ const feedSchema = new Schema({
         required: false
     },
     likes:{
-        types: Number,
-        // default:0
+        type: Number,
+        default:0
     },
     featured:{
         type: Boolean,

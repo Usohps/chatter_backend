@@ -21,7 +21,7 @@ const validate = (method) => {
         check("password", "Password is less than 4 characters")
           .isStrongPassword()
           .isLength({ min: 4, max: 16 }),
-        check("names", "Name feild is empty").not().isEmpty(),
+        check("name", "Name feild is empty").not().isEmpty(),
       ];
     }
     case "login": {
@@ -62,13 +62,13 @@ const signUp = async (req, res, next) => {
       res.status(422).json({ errors: errors.array() });
       return;
     }
-    const { names, email, password } = req.body;
+    const { name, email, password } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    let user = await User.create({ names, email, password: hash });
+    let user = await User.create({ name, email, password: hash });
     const token = createToken(user._id)
-    user = await User.create({ names, email, password: hash})
-    return res.status(200).json({names,password:hash,email,token});
+    user = await User.create({ name, email, password: hash})
+    return res.status(200).json({name,password:hash,email,token});
   } catch (error) {
     res.status(400).json({ error: error.message });
     throw next(error);

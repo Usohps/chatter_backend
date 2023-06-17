@@ -21,14 +21,14 @@ app.use("/api/feed",feedRoute)
 app.use(bodyParser.json())
 
 
-const mongoDB = "mongodb://127.0.0.1:27017/ChatterDB"; 
+// const mongoDB = "mongodb://127.0.0.1:27017/ChatterDB"; 
 
 const start = async () =>{
     try {
-      await mongoose.connect(mongoDB)
+      await mongoose.connect(`${process.env.DB_URL}/ChatterDB`)
       app.listen(process.env.PORT, () => {
         console.log(
-          `I am connected to ${mongoDB} and listening on port`,
+          `I am connected to db and listening on port`,
           process.env.PORT
         );
       }); 
